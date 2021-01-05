@@ -1,7 +1,7 @@
-# Automatically Resize VMs
-Automatically resize VMs that exceed memory consumption. The function code is referenced in the OCI documentation at https://docs.cloud.oracle.com/en-us/iaas/Content/Notification/Tasks/scenarioa.htm.
+# Automatically Storage Performance
+Automatically resize VPUs for given block vol based on utilization.
 
-This use case involves writing a function to resize VMs and creating an alarm  that sends a message to that function. When the alarm fires, the Notifications service sends the alarm message to the destination topic, which then fans out to the topic's subscriptions. In this scenario, the topic's subscriptions include the function as well as your email. The function is invoked on receipt of the alarm message. 
+This use case involves writing a function to resize block volume VPUs and creating an alarm that sends a message to that function. When the alarm fires, the Notifications service sends the alarm message to the destination topic, which then fans out to the topic's subscriptions. In this scenario, the topic's subscriptions include the function. The function is invoked on receipt of the alarm message.
 
 ![ONS to Functions](https://docs.cloud.oracle.com/en-us/iaas/Content/Resources/Images/notifications-scenarioA.png)
 
