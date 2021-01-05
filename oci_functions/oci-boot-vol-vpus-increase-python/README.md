@@ -72,7 +72,7 @@ On the OCI console, navigate to *Monitoring* > *Alarm Definitions*. Click *Creat
 On the Create Alarm page, under Define alarm, set up your threshold: 
 
 Metric description: 
-* Compartment: (select the compartment that contains your VM)
+* Compartment: (select the compartment that contains your Block Volume)
 * Metric Namespace: VolumeReadThroughput
 * Metric Name: DiskUtilizationHIGH
 * Interval: 1m
