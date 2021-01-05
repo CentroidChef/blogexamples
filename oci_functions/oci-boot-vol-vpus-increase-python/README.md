@@ -64,7 +64,7 @@ fn -v deploy --app myapp
 
 
 ## Configure Oracle Notification Service
-This section walks through creating an alarm using the Console and then updating the ONS topic created with the alarm.
+This section walks through creating an alarm using the Console and then updating the ONS topic created with the alarm. In this example we are setting alarm for metric "VolumeReadThroughput" and setting threshold at 4gigabytespermin value. If value is equal to or above 4g, then alarm is triggered. You can choose other metrics and value combinations to fire the alarm. Please plan ahead when setting the alarms, as this step is important to make sure functions are triggered at right time.
 
 
 On the OCI console, navigate to *Monitoring* > *Alarm Definitions*. Click *Create Alarm*.
