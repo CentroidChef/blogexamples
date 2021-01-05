@@ -5,9 +5,6 @@ This use case involves writing a function to resize block volume VPUs and creati
 
 ![ONS to Functions](https://objectstorage.us-ashburn-1.oraclecloud.com/n/id3nodyt06el/b/public_images/o/Automatic%20vol%20performance.jpg)
 
-As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
-Whenever you see it, it's time for you to perform an action.
-
 
 ## Prerequisites
 Before you deploy this sample function, make sure you have run step A, B and C of the [Oracle Functions Quick Start Guide for Cloud Shell](https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html)
@@ -37,11 +34,10 @@ Please check the [Accessing Other Oracle Cloud Infrastructure Resources from Run
 ## Create or Update IAM Policies
 Create a new policy that allows the dynamic group to *use instances*.
 
-![user input icon](./images/userinput.png)
 
 Your policy should look something like this:
 ```
-Allow dynamic-group <dynamic-group-name> to use instances in compartment <compartment-name>
+Allow dynamic-group <dynamic-group-name> to manage volume-family in compartment <compartment-name>
 ```
 For more information on how to create policies, check the [documentation](https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policysyntax.htm).
 
@@ -52,22 +48,12 @@ Review the following files in the current folder:
 * its dependencies, [requirements.txt](./requirements.txt)
 * the function metadata, [func.yaml](./func.yaml)
 
-The following piece of code in [func.py](./func.py) should be updated to match your needs:
-```
-    if  current_shape == "VM.Standard1.1":
-        new_shape = "VM.Standard2.1"
-    elif current_shape == "VM.Standard2.1":
-        new_shape = "VM.Standard2.2"
-```
-
-The code in [list_vm_shapes.py](./list_vm_shapes.py) can be used to improve the logic of VM shape selection.
-
+The following piece of code in [func.py](./func.py) should be updated to match your needs. The function here is updating the vpus_per_gb to 20 which corresponds to "higher performance tier"
 
 ## Deploy the function
 In Cloud Shell, run the fn deploy command to build the function and its dependencies as a Docker image,
 push the image to OCIR, and deploy the function to Oracle Functions in your application.
 
-![user input icon](./images/userinput.png)
 ```
 fn -v deploy --app <your app name>
 ```
@@ -80,7 +66,6 @@ fn -v deploy --app myapp
 ## Configure Oracle Notification Service
 This section walks through creating an alarm using the Console and then updating the ONS topic created with the alarm.
 
-![user input icon](./images/userinput.png)
 
 On the OCI console, navigate to *Monitoring* > *Alarm Definitions*. Click *Create Alarm*.
 
@@ -88,14 +73,14 @@ On the Create Alarm page, under Define alarm, set up your threshold:
 
 Metric description: 
 * Compartment: (select the compartment that contains your VM)
-* Metric Namespace: oci_computeagent
-* Metric Name: MemoryUtilization
+* Metric Namespace: VolumeReadThroughput
+* Metric Name: DiskUtilizationHIGH
 * Interval: 1m
-* Statistic: Max 
+* Statistic: Mean 
 
 Trigger rule:
 * Operator: greater than
-* Value: 90  (or lower for testing purposes)
+* Value: 4000000000  (or greater than or equal to)
 * Trigger Delay Minutes: 1
 
 Select your function under Notifications, Destinations:
@@ -116,7 +101,6 @@ Click Save alarm.
 ## Test ONS > Fn
 First, test the function indivudually.
 
-![user input icon](./images/userinput.png)
 
 Update section "resourceId" in [test-alarm.json](./test-alarm.json) with the OCID of the instance you want to update.
 
@@ -126,7 +110,7 @@ cat test-alarm.json | fn invoke <your app name> <function name>
 ```
 e.g.:
 ```
-cat test-alarm.json | fn invoke myapp oci-ons-compute-shape-increase-python
+cat test-alarm.json | fn invoke myapp oci-boot-vol-vpus-increase-python
 ```
 
 Now, the whole flow can be tested. Connect to an instance in the compartment where the alarm is active, and stress the memory utilization with the *stress* utility for example.
