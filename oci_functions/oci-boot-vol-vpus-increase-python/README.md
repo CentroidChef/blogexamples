@@ -3,7 +3,7 @@ Automatically resize VPUs for given block vol based on utilization.
 
 This use case involves writing a function to resize block volume VPUs and creating an alarm that sends a message to that function. When the alarm fires, the Notifications service sends the alarm message to the destination topic, which then fans out to the topic's subscriptions. In this scenario, the topic's subscriptions include the function. The function is invoked on receipt of the alarm message.
 
-![ONS to Functions](<insert image here from blog>)
+![ONS to Functions](https://objectstorage.us-ashburn-1.oraclecloud.com/n/id3nodyt06el/b/public_images/o/Automatic%20vol%20performance.jpg)
 
 As you make your way through this tutorial, look out for this icon ![user input icon](./images/userinput.png).
 Whenever you see it, it's time for you to perform an action.
