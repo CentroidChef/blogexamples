@@ -1,7 +1,7 @@
 #
 # oci-boot-vol-vpus-increase-python version 1.0.
 #
-# Copyright (c) 2020 Navdeep Saini, Inc.
+# Copyright (c) 2020 Centroid, Inc.
 # Licensed under the Apache License v 2.0 as shown at https://www.apache.org/licenses/LICENSE-2.0.txt
 #
 
