@@ -64,7 +64,7 @@ fn -v deploy --app myapp
 
 
 ## Configure Oracle Notification Service
-This section walks through creating an alarm using the Console and then updating the ONS topic created with the alarm. In this example we are setting alarm for metric "VolumeReadThroughput" and setting threshold at 4gigabytespermin value. If value is equal to or above 4g, then alarm is triggered. You can choose other metrics and value combinations to fire the alarm. Please plan ahead when setting the alarms, as this step is important to make sure functions are triggered at right time.
+This section walks through creating an alarm using the Console and then updating the ONS topic created with the alarm. In this example we are setting alarm for metric "VolumeReadThroughput" and setting threshold at 1gigabytespermin value. If value is equal to or less than 1g, then alarm is triggered. You can choose other metrics and value combinations to fire the alarm. Please plan ahead when setting the alarms, as this step is important to make sure functions are triggered at right time.
 
 
 On the OCI console, navigate to *Monitoring* > *Alarm Definitions*. Click *Create Alarm*.
@@ -74,13 +74,13 @@ On the Create Alarm page, under Define alarm, set up your threshold:
 Metric description: 
 * Compartment: (select the compartment that contains your VM)
 * Metric Namespace: VolumeReadThroughput
-* Metric Name: DiskUtilizationHIGH
+* Metric Name: DiskUtilizationNORMAL
 * Interval: 1m
 * Statistic: Mean 
 
 Trigger rule:
-* Operator: greater than
-* Value: 4000000000  (or greater than or equal to)
+* Operator: less than or equal to
+* Value: 1000000000  
 * Trigger Delay Minutes: 1
 
 Select your function under Notifications, Destinations:
@@ -110,7 +110,7 @@ cat test_alarm.json | fn invoke <your app name> <function name>
 ```
 e.g.:
 ```
-cat test_alarm.json | fn invoke myapp oci-boot-vol-vpus-increase-python
+cat test_alarm.json | fn invoke myapp oci-boot-vol-vpus-decrease-python
 ```
 
 Now, the whole flow can be tested. Connect to an instance in the compartment where the alarm is active, and stress the memory utilization with the *stress* utility for example.
