@@ -1,0 +1,24 @@
+{
+  "dedupeKey": "3d4dc867-254d-40ed-83da-6cf2f3c6ea51",
+  "title": "reportingDBDiskUtilizationHIGH",
+  "body": "High Disk Utilization for reporting DB. Disk utilization went above 4g read throughput",
+  "type": "OK_TO_FIRING",
+  "severity": "CRITICAL",
+  "timestampEpochMillis": 1609644360000,
+  "alarmMetaData": [
+    {
+      "id": "ocid1.alarm.oc1.iad.aaaaaaaabolbpml3xfm5x32kn6l4dqeown5h2jf3c4vdmooao6g4fnwdpm6a",
+      "status": "FIRING",
+      "severity": "CRITICAL",
+      "query": "VolumeReadThroughput[1m]{resourceId = \"ocid1.bootvolume.oc1.iad.abuwcljtsrtpy2kxzetdd6saufbtdjrhlkxkhh32gijd6cabu6nzrguzsnfa\"}.mean() >= 4000000000",
+      "totalMetricsFiring": 1,
+      "dimensions": [
+        {
+          "resourceId": "ocid1.bootvolume.oc1.iad.abuwcljtsrtpy2kxzetdd6saufbtdjrhlkxkhh32gijd6cabu6nzrguzsnfa",
+          "attachmentId": "ocid1.instance.oc1.iad.anuwcljt6rfcedyco36ccshuqvmqz7xaxdkstwqozxxlsfi66cujler23hua"
+        }
+      ]
+    }
+  ],
+  "version": 1
+}
