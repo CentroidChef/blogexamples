@@ -106,11 +106,11 @@ Update section "resourceId" in [test_alarm.json](./test_alarm.json) with the OCI
 
 Invoke the function as follows:
 ```
-cat test-alarm.json | fn invoke <your app name> <function name>
+cat test_alarm.json | fn invoke <your app name> <function name>
 ```
 e.g.:
 ```
-cat test-alarm.json | fn invoke myapp oci-boot-vol-vpus-increase-python
+cat test_alarm.json | fn invoke myapp oci-boot-vol-vpus-increase-python
 ```
 
 Now, the whole flow can be tested. Connect to an instance in the compartment where the alarm is active, and stress the memory utilization with the *stress* utility for example.
