@@ -48,7 +48,7 @@ Review the following files in the current folder:
 * its dependencies, [requirements.txt](./requirements.txt)
 * the function metadata, [func.yaml](./func.yaml)
 
-The following piece of code in [func.py](./func.py) should be updated to match your needs. The function here is updating the vpus_per_gb to 20 which corresponds to "higher performance tier"
+The following piece of code in [func.py](./func.py) should be updated to match your needs. The function here is updating the vpus_per_gb to 10 which corresponds to "Balance performance tier"
 
 ## Deploy the function
 In Cloud Shell, run the fn deploy command to build the function and its dependencies as a Docker image,
