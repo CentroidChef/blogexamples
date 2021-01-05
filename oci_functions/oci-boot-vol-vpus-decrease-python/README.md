@@ -113,4 +113,4 @@ e.g.:
 cat test_alarm.json | fn invoke myapp oci-boot-vol-vpus-decrease-python
 ```
 
-Now, the whole flow can be tested. Connect to an instance in the compartment where the alarm is active, and stress the memory utilization with the *stress* utility for example.
+Now, the whole flow can be tested. Connect to an instance in the compartment which has the block volume attached. Stress the disk utilization with the *stress* utility for example.
