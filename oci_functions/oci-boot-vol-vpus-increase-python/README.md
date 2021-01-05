@@ -102,7 +102,7 @@ Click Save alarm.
 First, test the function indivudually.
 
 
-Update section "resourceId" in [test-alarm.json](./test-alarm.json) with the OCID of the instance you want to update.
+Update section "resourceId" in [test_alarm.json](./test_alarm.json) with the OCID of the instance you want to update.
 
 Invoke the function as follows:
 ```
